@@ -285,6 +285,7 @@ func (a *App) CreateOAuthUser(service string, userData io.Reader, teamId string)
 
 	user.EmailVerified = true
 
+
 	ruser, err := a.CreateUser(user)
 	if err != nil {
 		return nil, err
