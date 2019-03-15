@@ -1,4 +1,4 @@
-package google
+package oauthgoogle
 
 import (
 	"encoding/json"
