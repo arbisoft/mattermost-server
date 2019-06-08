@@ -29,23 +29,15 @@ func init() {
 }
 
 func (glu *GoogleUser) IsValid() bool {
-	// if glu.Id == 0 {
-	// 	return false
-	// }
+	if glu.Id == 0 {
+		return false
+	}
 
-	// if len(glu.Email) == 0 {
-	// 	return false
-	// }
+	if len(glu.Email) == 0 {
+		return false
+	}
 
 	return true
-}
-
-func (glu *GoogleUser) getAuthData() string {
-	n, err := strconv.ParseInt(glu.Id, 10, 64)
-	if err != nil {
-		mlog.Error("Error in google")
-	}
-	return strconv.FormatInt(n, 10)
 }
 
 func userFromGoogleUser(glu *GoogleUser) *model.User {
@@ -65,7 +57,7 @@ func userFromGoogleUser(glu *GoogleUser) *model.User {
 	}
 	user.Username = strings.ToLower(splitName[0] + splitName[1])
 	user.Email = glu.Email
-	userId := glu.getAuthData()
+	userId := glu.Id
 	user.AuthData = &userId
 	user.AuthService = model.USER_AUTH_SERVICE_GOOGLE
 
