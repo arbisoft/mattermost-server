@@ -4,10 +4,8 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
-	"strconv"
 	"strings"
 
-	"github.com/mattermost/mattermost-server/mlog"
 	"github.com/mattermost/mattermost-server/einterfaces"
 	"github.com/mattermost/mattermost-server/model"
 )
@@ -29,7 +27,7 @@ func init() {
 }
 
 func (glu *GoogleUser) IsValid() bool {
-	if glu.Id == 0 {
+	if glu.Id == "" {
 		return false
 	}
 

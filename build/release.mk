@@ -65,40 +65,40 @@ endif
 		curl -s https://api.github.com/repos/mattermost/$$plugin_package/releases/latest | grep browser_download_url | cut -d '"' -f 4 | wget -qi - -P  $(DIST_PATH)/prepackaged_plugins/ ;\
 	done
 
-	@# ----- PLATFORM SPECIFIC -----
+# 	@# ----- PLATFORM SPECIFIC -----
 
-	@# Make osx package
-	@# Copy binary
-ifeq ($(BUILDER_GOOS_GOARCH),"darwin_amd64")
-	cp $(GOPATH)/bin/mattermost $(DIST_PATH)/bin # from native bin dir, not cross-compiled
-	cp $(GOPATH)/bin/platform $(DIST_PATH)/bin # from native bin dir, not cross-compiled
-else
-	cp $(GOPATH)/bin/darwin_amd64/mattermost $(DIST_PATH)/bin # from cross-compiled bin dir
-	cp $(GOPATH)/bin/darwin_amd64/platform $(DIST_PATH)/bin # from cross-compiled bin dir
-endif
-	@# Package
-	tar -C dist -czf $(DIST_PATH)-$(BUILD_TYPE_NAME)-osx-amd64.tar.gz mattermost
-	@# Cleanup
-	rm -f $(DIST_PATH)/bin/mattermost
-	rm -f $(DIST_PATH)/bin/platform
+# 	@# Make osx package
+# 	@# Copy binary
+# ifeq ($(BUILDER_GOOS_GOARCH),"darwin_amd64")
+# 	cp $(GOPATH)/bin/mattermost $(DIST_PATH)/bin # from native bin dir, not cross-compiled
+# 	cp $(GOPATH)/bin/platform $(DIST_PATH)/bin # from native bin dir, not cross-compiled
+# else
+# 	cp $(GOPATH)/bin/darwin_amd64/mattermost $(DIST_PATH)/bin # from cross-compiled bin dir
+# 	cp $(GOPATH)/bin/darwin_amd64/platform $(DIST_PATH)/bin # from cross-compiled bin dir
+# endif
+# 	@# Package
+# 	tar -C dist -czf $(DIST_PATH)-$(BUILD_TYPE_NAME)-osx-amd64.tar.gz mattermost
+# 	@# Cleanup
+# 	rm -f $(DIST_PATH)/bin/mattermost
+# 	rm -f $(DIST_PATH)/bin/platform
 
-	@# Make windows package
-	@# Copy binary
-ifeq ($(BUILDER_GOOS_GOARCH),"windows_amd64")
-	cp $(GOPATH)/bin/mattermost.exe $(DIST_PATH)/bin # from native bin dir, not cross-compiled
-	cp $(GOPATH)/bin/platform.exe $(DIST_PATH)/bin # from native bin dir, not cross-compiled
-else
-	cp $(GOPATH)/bin/windows_amd64/mattermost.exe $(DIST_PATH)/bin # from cross-compiled bin dir
-	cp $(GOPATH)/bin/windows_amd64/platform.exe $(DIST_PATH)/bin # from cross-compiled bin dir
-endif
-	@# Package
-	cd $(DIST_ROOT) && zip -9 -r -q -l mattermost-$(BUILD_TYPE_NAME)-windows-amd64.zip mattermost && cd ..
-	@# Cleanup
-	rm -f $(DIST_PATH)/bin/mattermost.exe
-	rm -f $(DIST_PATH)/bin/platform.exe
+# 	@# Make windows package
+# 	@# Copy binary
+# ifeq ($(BUILDER_GOOS_GOARCH),"windows_amd64")
+# 	cp $(GOPATH)/bin/mattermost.exe $(DIST_PATH)/bin # from native bin dir, not cross-compiled
+# 	cp $(GOPATH)/bin/platform.exe $(DIST_PATH)/bin # from native bin dir, not cross-compiled
+# else
+# 	cp $(GOPATH)/bin/windows_amd64/mattermost.exe $(DIST_PATH)/bin # from cross-compiled bin dir
+# 	cp $(GOPATH)/bin/windows_amd64/platform.exe $(DIST_PATH)/bin # from cross-compiled bin dir
+# endif
+# 	@# Package
+# 	cd $(DIST_ROOT) && zip -9 -r -q -l mattermost-$(BUILD_TYPE_NAME)-windows-amd64.zip mattermost && cd ..
+# 	@# Cleanup
+# 	rm -f $(DIST_PATH)/bin/mattermost.exe
+# 	rm -f $(DIST_PATH)/bin/platform.exe
 
-	@# Make linux package
-	@# Copy binary
+# 	@# Make linux package
+# 	@# Copy binary
 ifeq ($(BUILDER_GOOS_GOARCH),"linux_amd64")
 	cp $(GOPATH)/bin/mattermost $(DIST_PATH)/bin # from native bin dir, not cross-compiled
 	cp $(GOPATH)/bin/platform $(DIST_PATH)/bin # from native bin dir, not cross-compiled
@@ -106,7 +106,7 @@ else
 	cp $(GOPATH)/bin/linux_amd64/mattermost $(DIST_PATH)/bin # from cross-compiled bin dir
 	cp $(GOPATH)/bin/linux_amd64/platform $(DIST_PATH)/bin # from cross-compiled bin dir
 endif
-	@# Package
+# 	@# Package
 	tar -C dist -czf $(DIST_PATH)-$(BUILD_TYPE_NAME)-linux-amd64.tar.gz mattermost
-	@# Don't clean up native package so dev machines will have an unzipped package available
-	@#rm -f $(DIST_PATH)/bin/mattermost
+# 	@# Don't clean up native package so dev machines will have an unzipped package available
+# 	@#rm -f $(DIST_PATH)/bin/mattermost
