@@ -267,7 +267,7 @@ func GenerateLimitedClientConfig(c *model.Config, diagnosticId string, license *
 	props["SamlLoginButtonColor"] = ""
 	props["SamlLoginButtonBorderColor"] = ""
 	props["SamlLoginButtonTextColor"] = ""
-	props["EnableSignUpWithGoogle"] = "false"
+	props["EnableSignUpWithGoogle"] = "true"
 	props["EnableSignUpWithOffice365"] = "false"
 	props["EnableCustomBrand"] = strconv.FormatBool(*c.TeamSettings.EnableCustomBrand)
 	props["CustomBrandText"] = *c.TeamSettings.CustomBrandText
@@ -275,40 +275,40 @@ func GenerateLimitedClientConfig(c *model.Config, diagnosticId string, license *
 	props["EnableMultifactorAuthentication"] = strconv.FormatBool(*c.ServiceSettings.EnableMultifactorAuthentication)
 	props["EnforceMultifactorAuthentication"] = "false"
 
-	if license != nil {
-		if *license.Features.LDAP {
-			props["EnableLdap"] = strconv.FormatBool(*c.LdapSettings.Enable)
-			props["LdapLoginFieldName"] = *c.LdapSettings.LoginFieldName
-			props["LdapLoginButtonColor"] = *c.LdapSettings.LoginButtonColor
-			props["LdapLoginButtonBorderColor"] = *c.LdapSettings.LoginButtonBorderColor
-			props["LdapLoginButtonTextColor"] = *c.LdapSettings.LoginButtonTextColor
-		}
+	// if license != nil {
+	// 	if *license.Features.LDAP {
+	// 		props["EnableLdap"] = strconv.FormatBool(*c.LdapSettings.Enable)
+	// 		props["LdapLoginFieldName"] = *c.LdapSettings.LoginFieldName
+	// 		props["LdapLoginButtonColor"] = *c.LdapSettings.LoginButtonColor
+	// 		props["LdapLoginButtonBorderColor"] = *c.LdapSettings.LoginButtonBorderColor
+	// 		props["LdapLoginButtonTextColor"] = *c.LdapSettings.LoginButtonTextColor
+	// 	}
 
-		if *license.Features.SAML {
-			props["EnableSaml"] = strconv.FormatBool(*c.SamlSettings.Enable)
-			props["SamlLoginButtonText"] = *c.SamlSettings.LoginButtonText
-			props["SamlLoginButtonColor"] = *c.SamlSettings.LoginButtonColor
-			props["SamlLoginButtonBorderColor"] = *c.SamlSettings.LoginButtonBorderColor
-			props["SamlLoginButtonTextColor"] = *c.SamlSettings.LoginButtonTextColor
-		}
+	// 	if *license.Features.SAML {
+	// 		props["EnableSaml"] = strconv.FormatBool(*c.SamlSettings.Enable)
+	// 		props["SamlLoginButtonText"] = *c.SamlSettings.LoginButtonText
+	// 		props["SamlLoginButtonColor"] = *c.SamlSettings.LoginButtonColor
+	// 		props["SamlLoginButtonBorderColor"] = *c.SamlSettings.LoginButtonBorderColor
+	// 		props["SamlLoginButtonTextColor"] = *c.SamlSettings.LoginButtonTextColor
+	// 	}
 
-		if *license.Features.GoogleOAuth {
-			props["EnableSignUpWithGoogle"] = strconv.FormatBool(*c.GoogleSettings.Enable)
-		}
+	// 	if *license.Features.GoogleOAuth {
+	// 		props["EnableSignUpWithGoogle"] = strconv.FormatBool(*c.GoogleSettings.Enable)
+	// 	}
 
-		if *license.Features.Office365OAuth {
-			props["EnableSignUpWithOffice365"] = strconv.FormatBool(*c.Office365Settings.Enable)
-		}
+	// 	if *license.Features.Office365OAuth {
+	// 		props["EnableSignUpWithOffice365"] = strconv.FormatBool(*c.Office365Settings.Enable)
+	// 	}
 
-		if *license.Features.CustomTermsOfService {
-			props["EnableCustomTermsOfService"] = strconv.FormatBool(*c.SupportSettings.CustomTermsOfServiceEnabled)
-			props["CustomTermsOfServiceReAcceptancePeriod"] = strconv.FormatInt(int64(*c.SupportSettings.CustomTermsOfServiceReAcceptancePeriod), 10)
-		}
+	// 	if *license.Features.CustomTermsOfService {
+	// 		props["EnableCustomTermsOfService"] = strconv.FormatBool(*c.SupportSettings.CustomTermsOfServiceEnabled)
+	// 		props["CustomTermsOfServiceReAcceptancePeriod"] = strconv.FormatInt(int64(*c.SupportSettings.CustomTermsOfServiceReAcceptancePeriod), 10)
+	// 	}
 
-		if *license.Features.MFA {
-			props["EnforceMultifactorAuthentication"] = strconv.FormatBool(*c.ServiceSettings.EnforceMultifactorAuthentication)
-		}
-	}
+	// 	if *license.Features.MFA {
+	// 		props["EnforceMultifactorAuthentication"] = strconv.FormatBool(*c.ServiceSettings.EnforceMultifactorAuthentication)
+	// 	}
+	// }
 
 	return props
 }
